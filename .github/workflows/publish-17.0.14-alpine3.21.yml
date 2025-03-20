@@ -3,14 +3,12 @@ name: Publish 17.0.14-alpine3.21
 on:
   push:
     branches: [ "main" ]
+    tags: [ '*-*' ]
 
-env:
-  # Use docker.io for Docker Hub if empty
-  REGISTRY: docker.io
-  # github.repository as <account>/<repo>
-  RELEASE_IMAGE_NAME: kit101z/amazoncorretto
-  BASE_IMAGE_NAME: amazoncorretto
-  BASE_IMAGE_TAG: 17.0.14-alpine3.21
+permissions:
+  contents: read
+  packages: write
+  id-token: write
 
 jobs:
   build:

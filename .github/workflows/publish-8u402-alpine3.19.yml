@@ -1,13 +1,18 @@
-name: Publish 8u432-alpine3.20
+name: Publish 8u402-alpine3.19
 
 on:
   push:
     branches: [ "main" ]
 
+permissions:
+  contents: read
+  packages: write
+  id-token: write
+
 jobs:
   build:
     uses: ./.github/workflows/base.yml
     with:
-      base_image_tag: 8u432-alpine3.20
+      base_image_tag: 8u402-alpine3.19
     secrets:
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}

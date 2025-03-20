@@ -6,6 +6,9 @@ on:
       base_image_tag:
         required: true
         type: string
+    secrets:
+      DOCKER_PASSWORD:
+        required: true
 
 env:
   REGISTRY: docker.io
