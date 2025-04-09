@@ -1,0 +1,22 @@
+name: Publish amazoncorretto:8u432-alpine3.20
+
+on:
+  push:
+    branches: [ "main" ]
+    tags: [ '*-*' ]
+
+permissions:
+  contents: read
+  packages: write
+  id-token: write
+
+jobs:
+  build:
+    uses: ./.github/workflows/base.yml
+    with:
+      dockerfile: ./Dockerfile.amazoncorretto
+      release_image_name: kit101z/amazoncorretto
+      base_image_name: amazoncorretto
+      base_image_tag: 8u432-alpine3.20
+    secrets:
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}

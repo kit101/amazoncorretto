@@ -1,4 +1,4 @@
-name: Publish 8u402-alpine3.19
+name: Publish amazoncorretto:8u402-alpine3.19
 
 on:
   push:
@@ -13,6 +13,9 @@ jobs:
   build:
     uses: ./.github/workflows/base.yml
     with:
+      dockerfile: ./Dockerfile.amazoncorretto
+      release_image_name: kit101z/amazoncorretto
+      base_image_name: amazoncorretto
       base_image_tag: 8u402-alpine3.19
     secrets:
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}

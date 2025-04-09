@@ -1,0 +1,13 @@
+# docker buildx build --build-arg BASE_IMAGE_NAME=ibm-semeru-runtimes --build-arg BASE_IMAGE_TAG=open-8-jre -t xxx . --load
+ARG BASE_IMAGE_NAME=ibm-semeru-runtimes
+ARG BASE_IMAGE_TAG=open-8-jre
+FROM $BASE_IMAGE_NAME:$BASE_IMAGE_TAG
+LABEL maintainer="qkssk1711@163.com"
+ENV TZ=Asia/Shanghai
+# amd64
+RUN sed -i 's#http://archive.ubuntu.com#https://mirrors.aliyun.com#g' /etc/apt/sources.list.d/ubuntu.sources && \
+    sed -i 's#http://security.ubuntu.com#https://mirrors.aliyun.com#g' /etc/apt/sources.list.d/ubuntu.sources
+# arm64
+RUN sed -i 's#http://ports.ubuntu.com#https://mirrors.aliyun.com#g' /etc/apt/sources.list.d/ubuntu.sources
+
+RUN apt update && apt install -y fonts-dejavu

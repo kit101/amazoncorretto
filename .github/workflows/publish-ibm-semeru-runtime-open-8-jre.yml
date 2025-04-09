@@ -1,4 +1,4 @@
-name: Publish 8u432-alpine3.20
+name: Publish ibm-semeru-runtimes:open-8-jre
 
 on:
   push:
@@ -14,6 +14,9 @@ jobs:
   build:
     uses: ./.github/workflows/base.yml
     with:
-      base_image_tag: 8u432-alpine3.20
+      dockerfile: ./Dockerfile.ibm-semeru-runtimes
+      release_image_name: kit101z/ibm-semeru-runtimes
+      base_image_name: ibm-semeru-runtimes
+      base_image_tag: open-8-jre
     secrets:
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}

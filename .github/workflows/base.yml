@@ -3,7 +3,16 @@ name: Docker Build
 on:
   workflow_call:
     inputs:
+      dockerfile:
+        required: true
+        type: string        
+      base_image_name:
+        required: true
+        type: string
       base_image_tag:
+        required: true
+        type: string
+      release_image_name:
         required: true
         type: string
     secrets:
@@ -12,8 +21,8 @@ on:
 
 env:
   REGISTRY: docker.io
-  RELEASE_IMAGE_NAME: kit101z/amazoncorretto
-  BASE_IMAGE_NAME: amazoncorretto
+  RELEASE_IMAGE_NAME: ${{ inputs.release_image_name }}
+  BASE_IMAGE_NAME: ${{ inputs.base_image_name }}
 
 jobs:
   build:
@@ -65,7 +74,7 @@ jobs:
       uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09
       with:
         context: .
-        file: ./Dockerfile
+        file: ${{ inputs.dockerfile }}
         push: ${{ github.event_name != 'pull_request' }}
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
