@@ -15,8 +15,9 @@ jobs:
     uses: ./.github/workflows/base.yml
     with:
       dockerfile: ./Dockerfile.ibm-semeru-runtimes
-      release_image_name: kit101z/ibm-semeru-runtimes
       base_image_name: ibm-semeru-runtimes
       base_image_tag: open-8-jre
+      release_image_name: kit101z/ibm-semeru-runtimes
+      platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/s390x
     secrets:
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}

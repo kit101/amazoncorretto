@@ -15,8 +15,9 @@ jobs:
     uses: ./.github/workflows/base.yml
     with:
       dockerfile: ./Dockerfile.amazoncorretto
-      release_image_name: kit101z/amazoncorretto
       base_image_name: amazoncorretto
       base_image_tag: 8u432-alpine3.20
+      release_image_name: kit101z/amazoncorretto
+      platforms: linux/amd64,linux/arm64
     secrets:
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
